@@ -1,0 +1,237 @@
+/* Root Container Styling */
+#root {
+  max-width: 1280px;
+  margin: 15vh auto; /* Centered vertically */
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85); /* Semi-transparent background */
+  color: #00ff00; /* Green text for hacking theme */
+  border-radius: 20px; /* More rounded corners */
+  border: 2px solid; /* Gradient border */
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #00ff00, #00cc00, #008800);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Elevated look with darker shadow */
+  position: relative; /* To place it above the matrix background */
+  z-index: 2; /* Ensure it sits above the matrix background */
+  overflow: hidden; /* Clip children overflow for inner glow effect */
+  animation: pulse 2s infinite; /* Subtle pulsing effect */
+}
+
+/* Adding Inner Glow Effect */
+#root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(0, 255, 0, 0.2), transparent);
+  border-radius: inherit; /* Match the border-radius of the parent */
+  z-index: -1; /* Behind the container content */
+}
+
+/* Subtle Pulsing Effect */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Hover Effects */
+#root:hover {
+  border-image-source: linear-gradient(to right, #00ff00, #009900, #00cc00); /* Slight change on hover */
+  box-shadow: 0 15px 40px rgba(0, 255, 0, 0.7); /* Enhanced shadow on hover */
+}
+
+/* Matrix Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black; /* Fallback color */
+  z-index: -1;
+  overflow: hidden;
+  animation: matrix-fall 10s linear infinite;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.5) 0,
+    rgba(0, 255, 0, 0.5) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index: -1;
+  animation: matrix-scroll 10s linear infinite;
+}
+
+@keyframes matrix-fall {
+  0% { opacity: 0; transform: translateY(-100%); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(100%); }
+}
+
+@keyframes matrix-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Styling for Logo */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #00ff00aa); /* Green glow on hover */
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #00ff00aa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Card Styling */
+.card {
+  padding: 2em;
+  background: rgba(0, 0, 0, 0.85); /* Dark background */
+  color: #00ff00; /* Green text */
+  border-radius: 20px; /* Rounded corners */
+  border: 2px solid; /* Gradient border */
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to bottom right, #00ff00, #008800);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); /* Elevated look */
+  margin: 1em auto;
+  max-width: 500px;
+  transition: transform 200ms, box-shadow 200ms, border-color 200ms;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Inner Glow for Card */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(0, 255, 0, 0.2), transparent);
+  border-radius: inherit; /* Match the border-radius of the parent */
+  z-index: -1; /* Behind the card content */
+}
+
+/* Hover Effects */
+.card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 20px rgba(0, 255, 0, 0.7); /* Glow on hover */
+  border-color: #00cc00; /* Lighter green border on hover */
+}
+
+/* Read the Docs Link Styling */
+.read-the-docs {
+  color: #00ff00; /* Green color */
+  text-decoration: none;
+  transition: color 300ms;
+}
+
+.read-the-docs:hover {
+  color: #fff; /* White on hover */
+}
+
+/* Button Styling */
+.button {
+  display: inline-block;
+  padding: 1em 2em;
+  margin: 1em;
+  border: none;
+  border-radius: 10px;
+  background-color: #00ff00;
+  color: #000;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 300ms, transform 200ms;
+}
+
+.button:hover {
+  background-color: #00cc00;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+/* Input Field Styling */
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 1em;
+  margin: 1em 0;
+  border: 2px solid #00ff00; /* Green border */
+  border-radius: 5px;
+  width: calc(100% - 2em);
+  box-sizing: border-box;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+  color: #00ff00; /* Green text */
+  transition: border-color 300ms, background-color 300ms;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #00cc00; /* Lighter green on focus */
+  background-color: rgba(0, 0, 0, 0.9); /* Slightly darker background */
+}
+
+/* Checkbox Styling */
+.checkbox-group label {
+  display: inline-block;
+  padding: 0.5em;
+  margin: 0.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: #00ff00; /* Green checkboxes */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #root {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+
+  .button, input[type="text"], input[type="email"], input[type="password"] {
+    width: calc(100% - 1em);
+  }
+}
